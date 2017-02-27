@@ -1,0 +1,12 @@
+1       You     you     pro     pro     PRON    _       2       SUBJ
+2       xxx     xxx     unk     unk     X       _       0       ROOT
+3       more    more    qn      qn      DET     _       4       QUANT
+4       cookies cookie  n       n       NOUN    PL      2       OBJ
+5       ?       ?       .       ?       .       _       2       PUNCT
+
+1       I       i       pro     pro     PRON    _       2       SUBJ
+2       gave    give    v       v       VERB    _       0       ROOT
+3       you     you     pro     pro     PRON    _       2       OBJ
+5       cookies cookie  n       n       NOUN    PL      2       OBJ
+5       .       .       .       .       .       _       2       PUNCT
+

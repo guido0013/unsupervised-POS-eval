@@ -47,14 +47,14 @@ def to_clark(infile_train, infile_dev, infile_test, outfile, nr_snts=-1):
     if nr_snts == -1 or nr_snts >= len(corpus):
         for sentence in corpus:
             for word_tag_list in sentence:
-                train.write(word_tag_list[0].lower()+'\n')
+                train.write(word_tag_list[0].upper()+'\n')
             train.write('\n')
     else:
     
         for i in range(0, nr_snts):
             sentence = corpus[i]
             for word_tag_list in sentence:
-                train.write(word_tag_list[0].lower()+'\n')
+                train.write(word_tag_list[0].upper()+'\n')
             train.write('\n')
     
     snts_train.close()
@@ -107,10 +107,14 @@ def extract_gold_tags(infile_train, infile_dev, infile_test, outfile, nr_snts=-1
     gold.close()
 
     
-to_brown("ud-treebanks-v1.4/UD_Galician/gl-ud-train.conllu", "ud-treebanks-v1.4/UD_Galician/gl-ud-dev.conllu", "ud-treebanks-v1.4/UD_Galician/gl-ud-test.conllu","galician")   
-to_brown("ud-treebanks-v1.4/UD_Dutch/nl-ud-train.conllu", "ud-treebanks-v1.4/UD_Dutch/nl-ud-dev.conllu", "ud-treebanks-v1.4/UD_Dutch/nl-ud-test.conllu","dutch")  
-to_clark("ud-treebanks-v1.4/UD_Galician/gl-ud-train.conllu", "ud-treebanks-v1.4/UD_Galician/gl-ud-dev.conllu", "ud-treebanks-v1.4/UD_Galician/gl-ud-test.conllu","galician")  
-to_clark("ud-treebanks-v1.4/UD_Dutch/nl-ud-train.conllu", "ud-treebanks-v1.4/UD_Dutch/nl-ud-dev.conllu", "ud-treebanks-v1.4/UD_Dutch/nl-ud-test.conllu","dutch")  
-extract_gold_tags("ud-treebanks-v1.4/UD_Galician/gl-ud-train.conllu", "ud-treebanks-v1.4/UD_Galician/gl-ud-dev.conllu", "ud-treebanks-v1.4/UD_Galician/gl-ud-test.conllu","galician")
-extract_gold_tags("ud-treebanks-v1.4/UD_Dutch/nl-ud-train.conllu", "ud-treebanks-v1.4/UD_Dutch/nl-ud-dev.conllu", "ud-treebanks-v1.4/UD_Dutch/nl-ud-test.conllu","dutch")  
+#to_brown("ud-treebanks-v1.4/UD_Galician/gl-ud-train.conllu", "ud-treebanks-v1.4/UD_Galician/gl-ud-dev.conllu", "ud-treebanks-v1.4/UD_Galician/gl-ud-test.conllu","galician")   
+#to_brown("ud-treebanks-v1.4/UD_Dutch/nl-ud-train.conllu", "ud-treebanks-v1.4/UD_Dutch/nl-ud-dev.conllu", "ud-treebanks-v1.4/UD_Dutch/nl-ud-test.conllu","dutch")  
+#to_clark("ud-treebanks-v1.4/UD_Galician/gl-ud-train.conllu", "ud-treebanks-v1.4/UD_Galician/gl-ud-dev.conllu", "ud-treebanks-v1.4/UD_Galician/gl-ud-test.conllu","galician")  
+#to_clark("ud-treebanks-v1.4/UD_Dutch/nl-ud-train.conllu", "ud-treebanks-v1.4/UD_Dutch/nl-ud-dev.conllu", "ud-treebanks-v1.4/UD_Dutch/nl-ud-test.conllu","dutch")  
+#extract_gold_tags("ud-treebanks-v1.4/UD_Galician/gl-ud-train.conllu", "ud-treebanks-v1.4/UD_Galician/gl-ud-dev.conllu", "ud-treebanks-v1.4/UD_Galician/gl-ud-test.conllu","galician")
+#extract_gold_tags("ud-treebanks-v1.4/UD_Dutch/nl-ud-train.conllu", "ud-treebanks-v1.4/UD_Dutch/nl-ud-dev.conllu", "ud-treebanks-v1.4/UD_Dutch/nl-ud-test.conllu","dutch")  
+#extract_gold_tags("ud-treebanks-v1.4/UD_Slovenian/sl-ud-train.conllu", "ud-treebanks-v1.4/UD_Slovenian/sl-ud-dev.conllu", "ud-treebanks-v1.4/UD_Slovenian/sl-ud-test.conllu","slovenian") 
+#to_clark("ud-treebanks-v1.4/UD_Slovenian/sl-ud-train.conllu", "ud-treebanks-v1.4/UD_Slovenian/sl-ud-dev.conllu", "ud-treebanks-v1.4/UD_Slovenian/sl-ud-test.conllu","slovenian") 
+to_clark("ud-treebanks-v1.4/UD_English/en-ud-train.conllu", "ud-treebanks-v1.4/UD_English/en-ud-dev.conllu", "ud-treebanks-v1.4/UD_English/en-ud-test.conllu","english") 
+extract_gold_tags("ud-treebanks-v1.4/UD_English/en-ud-train.conllu", "ud-treebanks-v1.4/UD_English/en-ud-dev.conllu", "ud-treebanks-v1.4/UD_English/en-ud-test.conllu","english") 
 

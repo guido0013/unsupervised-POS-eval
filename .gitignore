@@ -9,3 +9,5 @@
 /results
 /gold_tags
 /data
+/gold_tags/*
+evaluation.py

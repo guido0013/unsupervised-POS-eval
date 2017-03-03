@@ -9,5 +9,5 @@
 /results
 /gold_tags
 /data
-/gold_tags/dutch.gold
+
 /evaluation.py

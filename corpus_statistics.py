@@ -4,7 +4,7 @@ import csv
 def compute_corpus_statistics(languages, output_name):
     with open(output_name, 'w+') as f:
         writer = csv.writer(f)
-        writer.writerow(["Language", "#tokens", "#types", "Token/Type", "#sentences", "Avg |snt|", "#Tags", "Entropy"])
+        writer.writerow(["Language", "#tokens", "#types", "Token/Type", "Hapaxes", "#sentences", "Avg |snt|", "#Tags", "Entropy"])
         
         int_tag_conversion = {}
         index = 0 
@@ -18,6 +18,7 @@ def compute_corpus_statistics(languages, output_name):
             nr_tokens = 0
             nr_types = 0
             nr_snts = 0
+            word_dict = {}
             
             for sentence in brown:
                 nr_snts += 1
@@ -27,9 +28,19 @@ def compute_corpus_statistics(languages, output_name):
                     if word not in types:
                         types.add(word)
                         nr_types += 1
+                        
+                    if word in word_dict:
+                        word_dict[word] += 1
+                    else:
+                        word_dict[word] = 1
             
             type_token_ratio = nr_tokens / nr_types       
             snt_len = nr_tokens / nr_snts 
+            
+            hapaxes = 0
+            for value in word_dict.values():
+                if value == 1:
+                    hapaxes += 1
             
             tag_word_dict = {}
             
@@ -51,7 +62,9 @@ def compute_corpus_statistics(languages, output_name):
                     int_tag_conversion[index] = tag
                     index += 1
                 
-                tag_info[tag] = len(tag_word_dict[tag])
+                tag_word_types = len(set(tag_word_dict[tag]))
+                
+                tag_info[tag] = len(tag_word_dict[tag]) / tag_word_types
                 
             tag_info_list = []
             tag_i = 0
@@ -61,7 +74,7 @@ def compute_corpus_statistics(languages, output_name):
                 else:
                     tag_info_list.append("-")  
                 tag_i += 1  
-            writer.writerow([language, nr_tokens, nr_types, type_token_ratio, nr_snts, snt_len, nr_tags, entropy] + tag_info_list)
+            writer.writerow([language, nr_tokens, nr_types, type_token_ratio, hapaxes ,nr_snts, snt_len, nr_tags, entropy] + tag_info_list)
             
             brown.close()
             gold.close()
@@ -72,7 +85,7 @@ def compute_corpus_statistics(languages, output_name):
             tag_names.append(int_tag_conversion[tag_i])
             tag_i += 1
                 
-        writer.writerow(['', '', '', '', '', '', '', ''] + tag_names)
+        writer.writerow(['', '', '', '', '', '', '', '', ''] + tag_names)
     
 def calculate_entropy(clusters, total_words):
     entropy = 0
@@ -83,4 +96,4 @@ def calculate_entropy(clusters, total_words):
     return -entropy
 
 
-compute_corpus_statistics(["arabic.200k", "catalan.200k", "czech.200k", "english.200k", "french.200k", "german.200k", "hindi.200k", "latin.200k", "norwegian.200k", "portuguese.200k", "portuguese_br.200k", "romanian.200k", "russian.200k", "spanish.200k"], "statistics.csv")
+compute_corpus_statistics(["arabic.200k", "catalan.200k", "czech.200k", "english.200k", "french.200k", "german.200k", "hindi.200k", "latin.200k", "norwegian.200k", "portuguese.200k", "portuguese_br.200k", "romanian.200k", "russian.200k", "spanish.200k"], "stats.csv")
